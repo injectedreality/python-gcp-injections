@@ -3,7 +3,7 @@ import logging
 import logging.config
 import structlog
 
-from stackdriverlog.conf import settings
+from gcpi.stackdriverlog.conf import settings
 
 
 class StackDriverLogger(logging.Logger):

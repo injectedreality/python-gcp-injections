@@ -1,4 +1,4 @@
-pip install python-stack-driver-log
+> pip install python-gcp-injections
 
 If you want single line logging you can use standard logging with `logging.info("This is my log text")`. But if you 
 would like to have som more context you use.

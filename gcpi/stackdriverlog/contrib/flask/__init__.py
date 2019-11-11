@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
-from flask.signals import appcontext_pushed, signals_available
-from stackdriverlog.conf import load_settings
+try:
+    from flask.signals import appcontext_pushed, signals_available
+except ImportError:
+    # Flask not supported because it is not imported
+    signals_available = False
+
+
+from gcpi.stackdriverlog.conf import load_settings
 
 
 def signal_handler(sender, **kwargs):

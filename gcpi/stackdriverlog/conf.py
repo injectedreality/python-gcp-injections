@@ -23,8 +23,8 @@ import logging.config
 
 import structlog
 
-from stackdriverlog.contrib import compat
-from stackdriverlog.formatters import JsonProcessorFormatter
+from gcpi.stackdriverlog.contrib import compat
+from gcpi.stackdriverlog.formatters import JsonProcessorFormatter
 
 
 USER_SETTINGS = None

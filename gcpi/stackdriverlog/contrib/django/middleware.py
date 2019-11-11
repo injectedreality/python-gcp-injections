@@ -2,7 +2,7 @@ import re
 import structlog
 
 from django.utils import timezone
-from stackdriverlog.conf import settings
+from gcpi.stackdriverlog.conf import settings
 
 
 class RequestLoggingMiddleware(object):

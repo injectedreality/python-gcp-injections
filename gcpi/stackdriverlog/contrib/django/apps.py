@@ -1,7 +1,7 @@
 from django.apps import AppConfig
 from django.core.signals import setting_changed
 
-from stackdriverlog.conf import load_settings
+from gcpi.stackdriverlog.conf import load_settings
 
 
 class StackDriverLoggerConfig(AppConfig):

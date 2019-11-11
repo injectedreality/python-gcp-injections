@@ -5,14 +5,18 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="python-gcp-injections",  # Replace with your own username
-    version="1.0",
+    version="1.3",
     author="Tommy Strand",
     author_email="github-projects@ireality.no",
     description="Tools and libraries for python to better run services on GCP",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/injectedreality/python-gcp-injections",
-    packages=['gcpi'],
+    packages=['gcpi',
+              'gcpi.stackdriverlog',
+              'gcpi.stackdriverlog.contrib',
+              'gcpi.stackdriverlog.contrib.django',
+              'gcpi.stackdriverlog.contrib.flask', ],
     keywords='stackdriver django gcp logging gke',
     install_requires=[
         'structlog',
