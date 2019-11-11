@@ -4,7 +4,7 @@ If you want single line logging you can use standard logging with `logging.info(
 would like to have som more context you use.
 
 ```python
-from stackdriverlog import get_logger
+from gcpi.stackdriverlog import get_logger
 LOG = get_logger()
 
 my_dict_data = {'test':1, 'debug':2}
@@ -19,7 +19,7 @@ as event.
 ### Django
 in settings.py add
 ```python
-from stackdriverlog import init_stack_driver_logging
-init_stack_driver_logging()
+from gcpi.stackdriverlog import stackdriver_init_logging
+stackdriver_init_logging()
 ```
 

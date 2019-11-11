@@ -4,14 +4,14 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="gcp-injections",  # Replace with your own username
-    version="0.1",
+    name="python-gcp-injections",  # Replace with your own username
+    version="1.0",
     author="Tommy Strand",
     author_email="github-projects@ireality.no",
     description="Tools and libraries for python to better run services on GCP",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/injectedreality/stackdriverlog",
+    url="https://github.com/injectedreality/python-gcp-injections",
     packages=['gcpi'],
     keywords='stackdriver django gcp logging gke',
     install_requires=[
