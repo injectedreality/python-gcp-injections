@@ -3,9 +3,9 @@ from django.core.signals import setting_changed
 
 from gcpi.stackdriverlog.conf import load_settings
 
-
+print("Loaded StackDriverLoggerConfig file")
 class StackDriverLoggerConfig(AppConfig):
-    name = 'stackdriverlog'
+    name = 'gcpi.stackdriverlog'
 
     def ready(self):
         # Connect the settings_changed signal so that we can
