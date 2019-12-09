@@ -1,5 +1,6 @@
 import re
 import structlog
+import json
 
 from django.utils import timezone
 from gcpi.stackdriverlog.conf import settings
@@ -11,6 +12,8 @@ class RequestLoggingMiddleware(object):
     Makes log on each response
     """
     IGNORE_PATHS = list(map(re.compile, settings.REQUEST_MIDDLEWARE_IGNORE_PATHS))
+    BODY_MAX_LENGTH = settings.REQUEST_MIDDLEWARE_BODY_MAX_LENGTH
+    SENSITIVE_POST_PARAMETERS = settings.REQUEST_MIDDLEWARE_SENSITIVE_POST_PARAMETERS
 
     def __init__(self, get_response):
         self.get_response = get_response
@@ -28,8 +31,22 @@ class RequestLoggingMiddleware(object):
     def pre_response(request):
         request.start = timezone.now()
         message = f"{request.method} {request.path}"
+
+        try:
+            bodys = request.body.decode('utf-8')
+
+            if len(bodys) > settings.REQUEST_MIDDLEWARE_BODY_MAX_LENGTH:
+                body = f"Body too big: It's over {settings.REQUEST_MIDDLEWARE_BODY_MAX_LENGTH}."
+            else:
+                body = json.loads(bodys)
+                for param in settings.REQUEST_MIDDLEWARE_SENSITIVE_POST_PARAMETERS:
+                    if body.get(param, None) is not None:
+                        body[param] = "%s (removed)" % ('x'*8)
+        except:
+            body = dict()
+
         request.logger = structlog.getLogger(__name__).bind(message=message,
-            path=request.path, method=request.method, query_params=dict(request.GET))
+            path=request.path, method=request.method, query_params=dict(request.GET), body=body)
 
         if hasattr(request, 'tracking_id'):
             request.logger = request.logger.bind(tracking_id=request.tracking_id)

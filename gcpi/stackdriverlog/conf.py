@@ -5,6 +5,8 @@ STACK_DRIVER_LOGGER setting. For example
 
 STACK_DRIVER_LOGGER = {
     REQUEST_MIDDLEWARE_IGNORE_PATHS: [...],
+    REQUEST_MIDDLEWARE_BODY_MAX_LENGTH: 500,
+    REQUEST_MIDDLEWARE_SENSITIVE_POST_PARAMETERS: [...],
     LOGGING = {
         version': 1,
         'disable_existing_loggers': True,
@@ -50,6 +52,13 @@ DEFAULTS = {
     'REQUEST_MIDDLEWARE_IGNORE_PATHS': [
         r'^/health/?$'
     ],
+
+    # List of json keys in request body that should not be
+    # logged by the logging middleware (Django only for now)
+    'REQUEST_MIDDLEWARE_SENSITIVE_POST_PARAMETERS': ['password', 'token'],
+
+    # Truncate and log body as string if body is too long
+    'REQUEST_MIDDLEWARE_BODY_MAX_LENGTH': 500,
 
     # If set True, force settings all log levels to DEBUG.
     'FORCE_DEBUG_LEVEL': False,
