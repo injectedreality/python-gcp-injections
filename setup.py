@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="python-gcp-injections",  # Replace with your own username
-    version="1.5",
+    version="1.5.1",
     author="Tommy Strand",
     author_email="github-projects@ireality.no",
     description="Tools and libraries for python to better run services on GCP",
