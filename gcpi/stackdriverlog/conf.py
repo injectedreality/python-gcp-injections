@@ -52,6 +52,8 @@ DEFAULTS = {
     'REQUEST_MIDDLEWARE_IGNORE_PATHS': [
         r'^/health/?$'
     ],
+    
+    'LOG_REQUEST_ID_HEADER': 'HTTP_X_REQUEST_ID',
 
     # List of json keys in request body that should not be
     # logged by the logging middleware (Django only for now)

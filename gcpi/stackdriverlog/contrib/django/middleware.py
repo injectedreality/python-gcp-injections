@@ -48,8 +48,8 @@ class RequestLoggingMiddleware(object):
         request.logger = structlog.getLogger(__name__).bind(message=message,
             path=request.path, method=request.method, query_params=dict(request.GET), body=body)
 
-        if hasattr(request, 'tracking_id'):
-            request.logger = request.logger.bind(tracking_id=request.tracking_id)
+        if hasattr(request.META, settings.LOG_REQUEST_ID_HEADER):
+            request.logger = request.logger.bind(request_id=request.META[settings.LOG_REQUEST_ID_HEADER])
 
     def post_response(self, request, response):
         request.logger = request.logger.bind(status=response.status_code,
