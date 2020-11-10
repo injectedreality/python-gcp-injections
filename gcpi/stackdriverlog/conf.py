@@ -50,6 +50,8 @@ DEFAULTS = {
     'REQUEST_MIDDLEWARE_IGNORE_PATHS': [
         r'^/health/?$'
     ],
+    
+    'LOG_REQUEST_ID_HEADER': 'HTTP_X_REQUEST_ID',
 
     # If set True, force settings all log levels to DEBUG.
     'FORCE_DEBUG_LEVEL': False,
